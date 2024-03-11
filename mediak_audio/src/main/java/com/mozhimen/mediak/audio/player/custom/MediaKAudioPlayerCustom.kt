@@ -2,13 +2,15 @@ package com.mozhimen.mediak.audio.player.custom
 
 import android.media.AudioManager
 import android.media.MediaPlayer
-import android.net.wifi.WifiManager
 import android.net.wifi.WifiManager.WifiLock
 import android.os.PowerManager
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
-import com.mozhimen.basick.lintk.optin.OptInApiInit_ByLazy
-import com.mozhimen.basick.lintk.optin.OptInApiCall_BindLifecycle
+import com.mozhimen.basick.elemk.android.net.cons.CWifiManager
+import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_WIFI_STATE
 import com.mozhimen.basick.postk.event.PostKEventLiveData
 import com.mozhimen.basick.taskk.temps.TaskKPollInfinite
 import com.mozhimen.basick.utilk.bases.BaseUtilK
@@ -53,11 +55,12 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
             return mediaKPlayerStatus.also { field = it }
         }
 
+    @OptIn(OPermission_ACCESS_WIFI_STATE::class, OPermission_ACCESS_FINE_LOCATION::class)
     private var _wifiLock: WifiLock? = null
         // 初始化wifi锁
         get() {
             if (field != null) return field
-            val lock = UtilKWifiManager.get(_context).createWifiLock(WifiManager.WIFI_MODE_FULL, TAG)
+            val lock = UtilKWifiManager.get(_context).createWifiLock(CWifiManager.WIFI_MODE_FULL, TAG)
             return lock.also { field = it }
         }
 
@@ -69,7 +72,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
             return manager.also { field = it }
         }
 
-    @OptIn(OptInApiInit_ByLazy::class, OptInApiCall_BindLifecycle::class)
+    @OptIn(OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     private val _taskKAudioProgressUpdate by lazy { TaskKPollInfinite() }//更新进度Task
 
     private val _dataBusAudioProgressUpdate by lazy { PostKEventLiveData.instance.with<MAudioKProgress?>(CMediaKAudioCons.Event.PROGRESS_UPDATE) }//发布更新进度Event
@@ -89,7 +92,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
                 if (audio.url.contains("/")) {
                     setDataSource(audio.url)
                 } else {
-                    val assetFileDescriptor = UtilKAssetManager.openFd(audio.url, _context)
+                    val assetFileDescriptor = UtilKAssetManager.openFd(_context, audio.url)
                     setDataSource(assetFileDescriptor.fileDescriptor, assetFileDescriptor.startOffset, assetFileDescriptor.length)
                 }
                 prepareAsync()
@@ -107,7 +110,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
         if (getPlayStatus() == EMediaKPlayerStatus.PAUSED) start()
     }
 
-    @OptIn(OptInApiInit_ByLazy::class, OptInApiCall_BindLifecycle::class)
+    @OptIn(OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     override fun pause() {
         if (getPlayStatus() != EMediaKPlayerStatus.STARTED) return
         _mediaKPlayerStatus!!.pause()
@@ -123,7 +126,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
         setAudioEvent(CMediaKAudioCons.Event.AUDIO_PAUSE, _currentAudioK)
     }
 
-    @OptIn(OptInApiInit_ByLazy::class, OptInApiCall_BindLifecycle::class)
+    @OptIn(OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     override fun release() {
         if (_mediaKPlayerStatus == null) return
         _mediaKPlayerStatus!!.release()
@@ -244,7 +247,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
     /**
      * prepare以后自动调用start方法,外部不能调用
      */
-    @OptIn(OptInApiInit_ByLazy::class, OptInApiCall_BindLifecycle::class)
+    @OptIn(OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     private fun start() {
         if (!requestAudioFocus()) {// 获取音频焦点,保证我们的播放器顺利播放
             Log.e(TAG, "获取音频焦点失败")

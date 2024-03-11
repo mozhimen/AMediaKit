@@ -3,8 +3,6 @@ package com.mozhimen.mediak.audio
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import com.mozhimen.basick.manifestk.annors.AManifestKRequire
-import com.mozhimen.basick.manifestk.cons.CPermission
 import com.mozhimen.basick.utilk.androidx.lifecycle.runOnMainThread
 import com.mozhimen.mediak.audio.commons.IMediaKAudio
 import com.mozhimen.mediak.audio.cons.EMediaKAudioPlayMode
@@ -19,7 +17,6 @@ import com.mozhimen.mediak.player.status.cons.EMediaKPlayerStatus
  * @Date 2022/10/30 18:57
  * @Version 1.0
  */
-@AManifestKRequire(CPermission.WAKE_LOCK)
 class MediaKAudio : IMediaKAudio, LifecycleOwner {
 
     companion object {
