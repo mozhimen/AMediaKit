@@ -11,10 +11,10 @@ import android.util.Log
 import android.view.Surface
 import android.view.TextureView
 import com.mozhimen.basick.utilk.android.content.UtilKAssetManager
-import com.mozhimen.uicorek.layoutk.bases.BaseLayoutKFrame
+import com.mozhimen.xmlk.layoutk.bases.BaseLayoutKFrame
 import com.mozhimen.basick.utilk.android.view.UtilKScreen
 import com.mozhimen.mediak.video.cons.CMediaKVideoGravity
-import com.mozhimen.uicorek.R
+import com.mozhimen.xmlk.R
 import java.io.IOException
 
 /**

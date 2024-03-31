@@ -8,7 +8,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="com.mozhimen.uicorektest.com.mozhimen.componentktest.videok.LayoutKVideoActivity">
+        tools:context="com.mozhimen.xmlktest.com.mozhimen.componentktest.videok.LayoutKVideoActivity">
 
         <!--<com.mozhimen.componentk.videok.LayoutKVideo
             android:id="@+id/layoutk_video1"

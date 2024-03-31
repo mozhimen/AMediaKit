@@ -47,7 +47,7 @@
                 android:orientation="vertical"
                 app:layout_constraintGuide_percent="0.85" />
 
-            <com.mozhimen.uicorek.textk.TextKMarquee
+            <com.mozhimen.xmlk.textk.TextKMarquee
                 android:id="@+id/popwink_audio_txt_name"
                 android:layout_width="70dp"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="0001.wav" />
 
-            <com.mozhimen.uicorek.layoutk.slider.LayoutKSlider
+            <com.mozhimen.xmlk.layoutk.slider.LayoutKSlider
                 android:id="@+id/popwink_audio_slider"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"

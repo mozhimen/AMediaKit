@@ -22,10 +22,10 @@ import com.mozhimen.mediak.audio.cons.CMediaKAudioCons
 import com.mozhimen.mediak.audio.mos.MAudioKInfo
 import com.mozhimen.mediak.audio.mos.MAudioKProgress
 import com.mozhimen.mediak.test.databinding.ActivityMediakAudioBinding
-import com.mozhimen.uicorek.layoutk.slider.LayoutKSlider
-import com.mozhimen.uicorek.layoutk.slider.commons.ISliderScrollListener
-import com.mozhimen.uicorek.layoutk.slider.mos.MRod
-import com.mozhimen.uicorek.popwink.bases.BasePopwinKLifecycle
+import com.mozhimen.xmlk.layoutk.slider.LayoutKSlider
+import com.mozhimen.xmlk.layoutk.slider.commons.ISliderScrollListener
+import com.mozhimen.xmlk.layoutk.slider.mos.MRod
+import com.mozhimen.xmlk.popwink.bases.BasePopwinKLifecycle
 import kotlin.math.roundToInt
 
 @AManifestKRequire(CPermission.WAKE_LOCK)
