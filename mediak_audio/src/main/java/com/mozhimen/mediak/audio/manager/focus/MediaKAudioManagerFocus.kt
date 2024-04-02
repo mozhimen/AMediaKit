@@ -5,7 +5,7 @@ import android.media.AudioManager
 import android.media.AudioManager.OnAudioFocusChangeListener
 import com.mozhimen.basick.utilk.android.media.UtilKAudioManager
 import com.mozhimen.basick.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.basick.utilk.kotlin.normalize
+import com.mozhimen.basick.utilk.kotlin.constraint
 import com.mozhimen.mediak.audio.manager.focus.commons.IMediaKAudioManagerFocus
 import com.mozhimen.mediak.audio.manager.focus.commons.IMediaKAudioManagerFocusListener
 import kotlin.math.abs
@@ -40,11 +40,11 @@ class MediaKAudioManagerFocus(
         abs(getVolumeMax() - getVolumeMin())
 
     override fun setVolume(volume: Int) {
-        getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC, volume.normalize(getVolumeMin(), getVolumeMax()), AudioManager.FLAG_PLAY_SOUND)
+        getAudioManager().setStreamVolume(AudioManager.STREAM_MUSIC, volume.constraint(getVolumeMin(), getVolumeMax()), AudioManager.FLAG_PLAY_SOUND)
     }
 
     override fun setVolumePercent(volumePercent: Float) {
-        setVolume((volumePercent * getVolumeInterval()).roundToInt().normalize(getVolumeMin(), getVolumeMax()))
+        setVolume((volumePercent * getVolumeInterval()).roundToInt().constraint(getVolumeMin(), getVolumeMax()))
     }
 
     override fun requestAudioFocus(): Boolean =

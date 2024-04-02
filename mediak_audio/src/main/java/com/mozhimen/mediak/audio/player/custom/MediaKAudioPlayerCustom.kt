@@ -14,9 +14,9 @@ import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_WIFI_STATE
 import com.mozhimen.basick.postk.event.PostKEventLiveData
 import com.mozhimen.basick.taskk.temps.TaskKPollInfinite
 import com.mozhimen.basick.utilk.bases.BaseUtilK
-import com.mozhimen.basick.utilk.android.util.et
 import com.mozhimen.basick.utilk.android.net.UtilKWifiManager
 import com.mozhimen.basick.utilk.android.content.UtilKAssetManager
+import com.mozhimen.basick.utilk.android.util.e
 import com.mozhimen.mediak.audio.manager.focus.commons.IMediaKAudioManagerFocusListener
 import com.mozhimen.mediak.audio.cons.CMediaKAudioCons
 import com.mozhimen.mediak.audio.player.custom.commons.IMediaKAudioPlayerCustom
@@ -92,7 +92,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
                 if (audio.url.contains("/")) {
                     setDataSource(audio.url)
                 } else {
-                    val assetFileDescriptor = UtilKAssetManager.openFd(_context, audio.url)
+                    val assetFileDescriptor = UtilKAssetManager.openFd_ofCxt(_context, audio.url)
                     setDataSource(assetFileDescriptor.fileDescriptor, assetFileDescriptor.startOffset, assetFileDescriptor.length)
                 }
                 prepareAsync()
@@ -101,7 +101,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
             setAudioEvent(CMediaKAudioCons.Event.AUDIO_LOAD, _currentAudioK)
         } catch (e: Exception) {
             e.printStackTrace()
-            e.message?.et(TAG)
+            e.message?.e(TAG)
             setAudioEvent(CMediaKAudioCons.Event.AUDIO_ERROR, _currentAudioK)
         }
     }
