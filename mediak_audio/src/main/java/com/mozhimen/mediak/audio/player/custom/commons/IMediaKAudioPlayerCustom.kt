@@ -9,7 +9,6 @@ import com.mozhimen.mediak.player.status.cons.EMediaKPlayerStatus
  * @ClassName ICustomAudioPlayer
  * @Description TODO
  * @Author Mozhimen & Kolin Zhao
- * @Date 2023/5/29 16:07
  * @Version 1.0
  */
 interface IMediaKAudioPlayerCustom : IMediaKStatusPLayer, IMediaKAudioManagerFocus {
