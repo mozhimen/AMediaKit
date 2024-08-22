@@ -11,10 +11,10 @@ import android.util.Log
 import android.view.Surface
 import android.view.TextureView
 import com.mozhimen.basick.utilk.android.content.UtilKAssetManager
-import com.mozhimen.xmlk.layoutk.bases.BaseLayoutKFrame
-import com.mozhimen.basick.utilk.android.view.UtilKScreen
+import com.mozhimen.basick.utilk.wrapper.UtilKScreen
+import com.mozhimen.mediak.video.R
 import com.mozhimen.mediak.video.cons.CMediaKVideoGravity
-import com.mozhimen.xmlk.R
+import com.mozhimen.xmlk.bases.BaseLayoutKFrame
 import java.io.IOException
 
 /**
@@ -68,15 +68,15 @@ class MediaKVideoLayout @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     override fun initAttrs(attrs: AttributeSet?, defStyleAttr: Int) {
-        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.LayoutKVideo)
+        val typedArray = context.obtainStyledAttributes(attrs, R.styleable.MediaKVideoLayout)
         _videoSource =
-            typedArray.getString(R.styleable.LayoutKVideo_layoutKVideo_pathOrUrl)
+            typedArray.getString(R.styleable.MediaKVideoLayout_mediaKVideoLayout_pathOrUrl)
         _videoGravity =
-            typedArray.getInt(R.styleable.LayoutKVideo_layoutKVideo_videoGravity, CMediaKVideoGravity.CENTER_CROP)
+            typedArray.getInt(R.styleable.MediaKVideoLayout_mediaKVideoLayout_videoGravity, CMediaKVideoGravity.CENTER_CROP)
         _videoIsLoop =
-            typedArray.getBoolean(R.styleable.LayoutKVideo_layoutKVideo_isLoop, false)
+            typedArray.getBoolean(R.styleable.MediaKVideoLayout_mediaKVideoLayout_isLoop, false)
         _videoVolume =
-            typedArray.getInteger(R.styleable.LayoutKVideo_layoutKVideo_volume, 0).toFloat()
+            typedArray.getInteger(R.styleable.MediaKVideoLayout_mediaKVideoLayout_volume, 0).toFloat()
         typedArray.recycle()
     }
 
@@ -235,7 +235,7 @@ class MediaKVideoLayout @JvmOverloads constructor(context: Context, attrs: Attri
             if (_videoIsUrl) {
                 mediaMetadataRetriever.setDataSource(_videoSource, HashMap())
             } else {
-                val assetFileDescriptor = UtilKAssetManager.openFd(_videoSource!!, context)
+                val assetFileDescriptor = UtilKAssetManager.openFd(context, _videoSource!!)
                 mediaMetadataRetriever.setDataSource(
                     assetFileDescriptor.fileDescriptor,
                     assetFileDescriptor.startOffset,
@@ -259,8 +259,8 @@ class MediaKVideoLayout @JvmOverloads constructor(context: Context, attrs: Attri
     }
 
     private fun zoomTextureSize() {
-        val screenWidth: Int = UtilKScreen.getWidthOfWindow()
-        val screenHeight: Int = UtilKScreen.getHeightOfWindow()
+        val screenWidth: Int = UtilKScreen.getWidth()
+        val screenHeight: Int = UtilKScreen.getHeight()
         var scaleX = 1.0f
         var scaleY = 1.0f
         if (_videoWidth > screenWidth && _videoHeight > screenHeight) {
@@ -294,7 +294,7 @@ class MediaKVideoLayout @JvmOverloads constructor(context: Context, attrs: Attri
                 if (_videoSource!!.contains("/")) {
                     setDataSource(_videoSource)
                 } else {
-                    val assetFileDescriptor = UtilKAssetManager.openFd(_videoSource!!, context)
+                    val assetFileDescriptor = UtilKAssetManager.openFd(context,_videoSource!!)
                     setDataSource(assetFileDescriptor.fileDescriptor, assetFileDescriptor.startOffset, assetFileDescriptor.length)
                 }
             }

@@ -11,7 +11,6 @@ import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
 import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
 import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
 import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_WIFI_STATE
-import com.mozhimen.basick.postk.event.PostKEventLiveData
 import com.mozhimen.basick.taskk.temps.TaskKPollInfinite
 import com.mozhimen.basick.utilk.bases.BaseUtilK
 import com.mozhimen.basick.utilk.android.net.UtilKWifiManager
@@ -25,6 +24,7 @@ import com.mozhimen.mediak.audio.mos.MAudioKInfo
 import com.mozhimen.mediak.audio.mos.MAudioKProgress
 import com.mozhimen.mediak.player.status.MediaKPlayerStatus
 import com.mozhimen.mediak.player.status.cons.EMediaKPlayerStatus
+import com.mozhimen.postk.livedata.PostKLiveData
 
 /**
  * @ClassName AudioPlayer
@@ -75,7 +75,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
     @OptIn(OApiCall_BindLifecycle::class, OApiInit_ByLazy::class)
     private val _taskKAudioProgressUpdate by lazy { TaskKPollInfinite() }//更新进度Task
 
-    private val _dataBusAudioProgressUpdate by lazy { PostKEventLiveData.instance.with<MAudioKProgress?>(CMediaKAudioCons.Event.PROGRESS_UPDATE) }//发布更新进度Event
+    private val _dataBusAudioProgressUpdate by lazy { PostKLiveData.instance.with<MAudioKProgress?>(CMediaKAudioCons.Event.PROGRESS_UPDATE) }//发布更新进度Event
 
     private var _isPausedByFocusLossTransient = false
 
@@ -269,7 +269,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
 
     private fun setAudioEvent(eventName: String, audio: MAudioKInfo?) {
         Log.d(TAG, "setAudioEvent: eventName [$eventName] audio $audio")
-        PostKEventLiveData.instance.with<MAudioKInfo?>(eventName).postValue(audio)
+        PostKLiveData.instance.with<MAudioKInfo?>(eventName).postValue(audio)
     }
 
     private fun setMediaVolume(left: Float, right: Float) {

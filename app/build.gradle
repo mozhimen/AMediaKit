@@ -39,10 +39,11 @@ android {
 dependencies {
 
     implementation project(':SwiftKit:basick')
-    implementation project(':SwiftKit:uicorek')
+    implementation project(':SwiftKit:xmlk')
     implementation project(':mediak_player')
     implementation project(':mediak_audio')
     implementation project(':mediak_video')
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'

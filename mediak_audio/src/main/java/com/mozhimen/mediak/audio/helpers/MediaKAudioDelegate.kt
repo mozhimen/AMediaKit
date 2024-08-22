@@ -2,7 +2,6 @@ package com.mozhimen.mediak.audio.helpers
 
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
-import com.mozhimen.basick.postk.event.PostKEventLiveData
 import com.mozhimen.basick.utilk.bases.BaseUtilK
 import com.mozhimen.basick.utilk.androidx.lifecycle.runOnMainThread
 import com.mozhimen.mediak.audio.commons.IMediaKAudio
@@ -11,6 +10,7 @@ import com.mozhimen.mediak.audio.cons.EMediaKAudioPlayMode
 import com.mozhimen.mediak.audio.player.custom.MediaKAudioPlayerCustom
 import com.mozhimen.mediak.audio.mos.MAudioKInfo
 import com.mozhimen.mediak.player.status.cons.EMediaKPlayerStatus
+import com.mozhimen.postk.livedata.PostKLiveData
 import java.util.concurrent.CopyOnWriteArrayList
 
 
@@ -45,11 +45,11 @@ internal class MediaKAudioDelegate(private val _owner: LifecycleOwner) : IMediaK
 
     init {
         _owner.runOnMainThread {
-            PostKEventLiveData.instance.with<MAudioKInfo?>(CMediaKAudioCons.Event.AUDIO_COMPLETE).observe(_owner) {
+            PostKLiveData.instance.with<MAudioKInfo?>(CMediaKAudioCons.Event.AUDIO_COMPLETE).observe(_owner) {
                 Log.d(TAG, "init: onCompleted id ${it?.id} url ${it?.url}")
                 genNextAudio(it)
             }
-            PostKEventLiveData.instance.with<MAudioKInfo?>(CMediaKAudioCons.Event.AUDIO_ERROR).observe(_owner) {
+            PostKLiveData.instance.with<MAudioKInfo?>(CMediaKAudioCons.Event.AUDIO_ERROR).observe(_owner) {
                 Log.d(TAG, "init: onError id ${it?.id} url ${it?.url}")
                 genNextAudio(it)
             }
@@ -190,7 +190,7 @@ internal class MediaKAudioDelegate(private val _owner: LifecycleOwner) : IMediaK
                 if (index in _playList.indices) {
                     _playList.removeAt(index)
                 }
-                PostKEventLiveData.instance.with<Pair<MAudioKInfo, Boolean>?>(CMediaKAudioCons.Event.AUDIO_POPUP).setValue(audio to (_playList.size != 0))
+                PostKLiveData.instance.with<Pair<MAudioKInfo, Boolean>?>(CMediaKAudioCons.Event.AUDIO_POPUP).setValue(audio to (_playList.size != 0))
                 getPlayPositionNext()
             }
         }

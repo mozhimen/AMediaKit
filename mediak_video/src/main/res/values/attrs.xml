@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MediaKVideoLayout">
+        <attr name="mediaKVideoLayout_pathOrUrl" format="string" />
+        <attr name="mediaKVideoLayout_videoGravity" format="enum">
+            <enum name="start" value="0" />
+            <enum name="end" value="1" />
+            <enum name="center_crop" value="2" />
+            <enum name="none" value="3" />
+        </attr>
+        <attr name="mediaKVideoLayout_isLoop" format="boolean" />
+        <attr name="mediaKVideoLayout_volume" format="integer" />
+    </declare-styleable>
+</resources>
