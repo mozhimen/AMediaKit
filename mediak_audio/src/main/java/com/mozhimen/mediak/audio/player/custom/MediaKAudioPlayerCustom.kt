@@ -6,16 +6,15 @@ import android.net.wifi.WifiManager.WifiLock
 import android.os.PowerManager
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
-import com.mozhimen.basick.elemk.android.net.cons.CWifiManager
-import com.mozhimen.basick.lintk.optins.OApiCall_BindLifecycle
-import com.mozhimen.basick.lintk.optins.OApiInit_ByLazy
-import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
-import com.mozhimen.basick.lintk.optins.permission.OPermission_ACCESS_WIFI_STATE
-import com.mozhimen.basick.taskk.temps.TaskKPollInfinite
-import com.mozhimen.basick.utilk.bases.BaseUtilK
-import com.mozhimen.basick.utilk.android.net.UtilKWifiManager
-import com.mozhimen.basick.utilk.android.content.UtilKAssetManager
-import com.mozhimen.basick.utilk.android.util.e
+import com.mozhimen.kotlin.elemk.android.net.cons.CWifiManager
+import com.mozhimen.kotlin.lintk.optins.OApiCall_BindLifecycle
+import com.mozhimen.kotlin.lintk.optins.OApiInit_ByLazy
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_FINE_LOCATION
+import com.mozhimen.kotlin.lintk.optins.permission.OPermission_ACCESS_WIFI_STATE
+import com.mozhimen.kotlin.utilk.bases.BaseUtilK
+import com.mozhimen.kotlin.utilk.android.net.UtilKWifiManager
+import com.mozhimen.kotlin.utilk.android.content.UtilKAssetManager
+import com.mozhimen.kotlin.utilk.android.util.e
 import com.mozhimen.mediak.audio.manager.focus.commons.IMediaKAudioManagerFocusListener
 import com.mozhimen.mediak.audio.cons.CMediaKAudioCons
 import com.mozhimen.mediak.audio.player.custom.commons.IMediaKAudioPlayerCustom
@@ -25,6 +24,7 @@ import com.mozhimen.mediak.audio.mos.MAudioKProgress
 import com.mozhimen.mediak.player.status.MediaKPlayerStatus
 import com.mozhimen.mediak.player.status.cons.EMediaKPlayerStatus
 import com.mozhimen.postk.livedata.PostKLiveData
+import com.mozhimen.taskk.temps.TaskKPollInfinite
 
 /**
  * @ClassName AudioPlayer
@@ -92,7 +92,7 @@ class MediaKAudioPlayerCustom(private val _owner: LifecycleOwner) :
                 if (audio.url.contains("/")) {
                     setDataSource(audio.url)
                 } else {
-                    val assetFileDescriptor = UtilKAssetManager.openFd_ofCxt(_context, audio.url)
+                    val assetFileDescriptor = UtilKAssetManager.openFd(_context, audio.url)
                     setDataSource(assetFileDescriptor.fileDescriptor, assetFileDescriptor.startOffset, assetFileDescriptor.length)
                 }
                 prepareAsync()

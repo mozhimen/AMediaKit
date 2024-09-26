@@ -3,7 +3,7 @@ package com.mozhimen.mediak.audio
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.LifecycleRegistry
-import com.mozhimen.basick.utilk.androidx.lifecycle.runOnMainThread
+import com.mozhimen.basick.utils.runOnMainThread
 import com.mozhimen.mediak.audio.commons.IMediaKAudio
 import com.mozhimen.mediak.audio.cons.EMediaKAudioPlayMode
 import com.mozhimen.mediak.audio.helpers.MediaKAudioDelegate

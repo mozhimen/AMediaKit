@@ -23,13 +23,50 @@ include ':app'
 include ':mediak_audio'
 include ':mediak_player'
 include ':mediak_video'
+//AXmlKit
+include ':AXmlKit'
+project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
+include ':AXmlKit:textk'
+include ':AXmlKit:layoutk_slider'
+include ':AXmlKit:popwink'
+include ':AXmlKit:imagek_blur'
 //SwiftKit
 include ':SwiftKit'
 project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
 include ':SwiftKit:basick'
 include ':SwiftKit:xmlk'
+include ':SwiftKit:blurk'
+include ':SwiftKit:mvvmk'
 //APostKit
 include ':APostKit'
 project(':APostKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APostKit")
 include ':APostKit:postk_livedata'
+//KUtilKit
+include ':KUtilKit'
+project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
+include ':KUtilKit:utilk_android'
+include ':KUtilKit:utilk_kotlin'
+//AAnimKit
+include ':AAnimKit'
+project(':AAnimKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AAnimKit")
+include ':AAnimKit:animk_builder'
+//AImageKit
+include ':AImageKit'
+project(':AImageKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AImageKit")
+include ':AImageKit:imagek_glide_blur'
+include ':AImageKit:imagek_glide'
+//APostKit
+include ':APostKit'
+project(':APostKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APostKit")
+include ':APostKit:postk_livedata'
+//ATaskKit
+include ':ATaskKit'
+project(':ATaskKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ATaskKit")
+include ':ATaskKit:taskk_executor'
+//AStackKit
+include ':AStackKit'
+project(':AStackKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AStackKit")
+include ':AStackKit:stackk_callback'
+include ':AStackKit:basic'
+
 

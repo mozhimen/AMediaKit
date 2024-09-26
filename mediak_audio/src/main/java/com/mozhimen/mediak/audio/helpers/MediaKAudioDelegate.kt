@@ -2,8 +2,8 @@ package com.mozhimen.mediak.audio.helpers
 
 import android.util.Log
 import androidx.lifecycle.LifecycleOwner
-import com.mozhimen.basick.utilk.bases.BaseUtilK
-import com.mozhimen.basick.utilk.androidx.lifecycle.runOnMainThread
+import com.mozhimen.basick.utils.runOnMainThread
+import com.mozhimen.kotlin.utilk.bases.BaseUtilK
 import com.mozhimen.mediak.audio.commons.IMediaKAudio
 import com.mozhimen.mediak.audio.cons.CMediaKAudioCons
 import com.mozhimen.mediak.audio.cons.EMediaKAudioPlayMode

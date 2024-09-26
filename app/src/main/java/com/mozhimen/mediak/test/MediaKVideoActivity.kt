@@ -2,10 +2,10 @@ package com.mozhimen.mediak.test
 
 import android.os.Bundle
 import androidx.lifecycle.lifecycleScope
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
-import com.mozhimen.basick.utilk.kotlin.UtilKStrAsset
-import com.mozhimen.basick.utilk.kotlin.UtilKStrPath
+import com.mozhimen.kotlin.utilk.kotlin.UtilKStrAsset
+import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.mediak.test.databinding.ActivityMediakVideoBinding
+import com.mozhimen.mvvmk.bases.activity.viewbinding.BaseActivityVB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace 'com.mozhimen.mediak.test'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.mozhimen.mediak.test"
@@ -38,8 +38,14 @@ android {
 
 dependencies {
 
-    implementation project(':SwiftKit:basick')
+    implementation project(':SwiftKit:mvvmk')
     implementation project(':SwiftKit:xmlk')
+    implementation project(':AXmlKit:textk')
+    implementation project(':AXmlKit:layoutk_slider')
+    implementation project(':AXmlKit:popwink')
+    implementation project(':AAnimKit:animk_builder')
+    implementation project(':APostKit:postk_livedata')
+
     implementation project(':mediak_player')
     implementation project(':mediak_audio')
     implementation project(':mediak_video')

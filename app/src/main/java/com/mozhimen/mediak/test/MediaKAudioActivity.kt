@@ -9,26 +9,24 @@ import android.view.animation.Animation
 import android.widget.ImageView
 import android.widget.TextView
 import com.mozhimen.animk.builder.AnimKBuilder
-import com.mozhimen.animk.builder.temps.AnimKTranslationType
-import com.mozhimen.basick.elemk.androidx.appcompat.bases.databinding.BaseActivityVB
-import com.mozhimen.basick.manifestk.permission.annors.APermissionCheck
-import com.mozhimen.basick.manifestk.annors.AManifestKRequire
-import com.mozhimen.basick.manifestk.cons.CPermission
-import com.mozhimen.basick.postk.event.PostKEventLiveData
-import com.mozhimen.basick.utilk.android.os.UtilKBuildVersion
-import com.mozhimen.basick.utilk.kotlin.normalize
+import com.mozhimen.animk.builder.impls.AnimationTranslationType//AnimKTranslationType
+import com.mozhimen.kotlin.elemk.android.cons.CPermission
+import com.mozhimen.kotlin.utilk.android.os.UtilKBuildVersion
+import com.mozhimen.kotlin.utilk.kotlin.ranges.constraint
+import com.mozhimen.manifestk.permission.annors.APermissionCheck
 import com.mozhimen.mediak.audio.MediaKAudio
 import com.mozhimen.mediak.audio.cons.CMediaKAudioCons
 import com.mozhimen.mediak.audio.mos.MAudioKInfo
 import com.mozhimen.mediak.audio.mos.MAudioKProgress
 import com.mozhimen.mediak.test.databinding.ActivityMediakAudioBinding
+import com.mozhimen.mvvmk.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.postk.livedata.PostKLiveData
 import com.mozhimen.xmlk.layoutk.slider.LayoutKSlider
 import com.mozhimen.xmlk.layoutk.slider.commons.ISliderScrollListener
 import com.mozhimen.xmlk.layoutk.slider.mos.MRod
 import com.mozhimen.xmlk.popwink.bases.BasePopwinKLifecycle
 import kotlin.math.roundToInt
 
-@AManifestKRequire(CPermission.WAKE_LOCK)
 @APermissionCheck(CPermission.WAKE_LOCK)
 class MediaKAudioActivity : BaseActivityVB<ActivityMediakAudioBinding>() {
     private val _audioList = arrayListOf(
@@ -40,7 +38,7 @@ class MediaKAudioActivity : BaseActivityVB<ActivityMediakAudioBinding>() {
     private var _currentVolume: Int = MediaKAudio.instance.getVolumeCurrent()
         get() = MediaKAudio.instance.getVolumeCurrent()
         set(value) {
-            val volume = value.normalize(MediaKAudio.instance.getVolumeMin()..MediaKAudio.instance.getVolumeMax())
+            val volume = value.constraint(MediaKAudio.instance.getVolumeMin()..MediaKAudio.instance.getVolumeMax())
             if (UtilKBuildVersion.isAfterV_28_9_P()) {
                 MediaKAudio.instance.setVolume(volume).also {
                     vb.audiokSliderVolumeTxt.text = volume.toString()
@@ -63,7 +61,7 @@ class MediaKAudioActivity : BaseActivityVB<ActivityMediakAudioBinding>() {
         })
 
         MediaKAudio.instance.addAudiosToPlayList(_audioList)
-        PostKEventLiveData.instance.with<MAudioKInfo?>(CMediaKAudioCons.Event.AUDIO_START).observe(this) {
+        PostKLiveData.instance.with<MAudioKInfo?>(CMediaKAudioCons.Event.AUDIO_START).observe(this) {
             if (it != null) {
                 Log.d(TAG, "initData: audio_start")
                 _popwinAudio.setTitle(it.name)
@@ -72,7 +70,7 @@ class MediaKAudioActivity : BaseActivityVB<ActivityMediakAudioBinding>() {
                 }
             }
         }
-        PostKEventLiveData.instance.with<Pair<MAudioKInfo, Boolean>?>(CMediaKAudioCons.Event.AUDIO_POPUP).observe(this) {
+        PostKLiveData.instance.with<Pair<MAudioKInfo, Boolean>?>(CMediaKAudioCons.Event.AUDIO_POPUP).observe(this) {
             if (it != null) {
                 Log.d(TAG, "initData: audio_popup")
                 if (!it.second) {
@@ -114,7 +112,7 @@ class MediaKAudioActivity : BaseActivityVB<ActivityMediakAudioBinding>() {
                     dismiss()
                 }
             }
-            PostKEventLiveData.instance.with<MAudioKProgress?>(CMediaKAudioCons.Event.PROGRESS_UPDATE).observe(this) {
+            PostKLiveData.instance.with<MAudioKProgress?>(CMediaKAudioCons.Event.PROGRESS_UPDATE).observe(this) {
                 if (it != null) {
                     Log.d(TAG, "initData: progress_update" + " progress status ${it.status} currentPos ${it.currentPos} duration ${it.duration} audioInfo ${it.audioInfo}")
                     _slider.updateRodPercent(it.currentPos.toFloat() / it.duration.toFloat())
@@ -123,11 +121,11 @@ class MediaKAudioActivity : BaseActivityVB<ActivityMediakAudioBinding>() {
         }
 
         override fun onCreateShowAnimation(): Animation {
-            return AnimKBuilder.asAnimation().add(AnimKTranslationType.FROM_TOP_SHOW).build()
+            return AnimKBuilder.asAnimation().combine(AnimationTranslationType.FROM_TOP_SHOW).build()
         }
 
         override fun onCreateDismissAnimation(): Animation {
-            return AnimKBuilder.asAnimation().add(AnimKTranslationType.TO_TOP_HIDE).build()
+            return AnimKBuilder.asAnimation().combine(AnimationTranslationType.TO_TOP_HIDE).build()
         }
     }
 }

@@ -10,8 +10,8 @@ import android.util.AttributeSet
 import android.util.Log
 import android.view.Surface
 import android.view.TextureView
-import com.mozhimen.basick.utilk.android.content.UtilKAssetManager
-import com.mozhimen.basick.utilk.wrapper.UtilKScreen
+import com.mozhimen.kotlin.utilk.android.content.UtilKAssetManager
+import com.mozhimen.kotlin.utilk.wrapper.UtilKScreen
 import com.mozhimen.mediak.video.R
 import com.mozhimen.mediak.video.cons.CMediaKVideoGravity
 import com.mozhimen.xmlk.bases.BaseLayoutKFrame
