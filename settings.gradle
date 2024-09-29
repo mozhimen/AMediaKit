@@ -36,7 +36,7 @@ project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
 include ':SwiftKit:basick'
 include ':SwiftKit:xmlk'
 include ':SwiftKit:blurk'
-include ':SwiftKit:mvvmk'
+include ':SwiftKit:bindk'
 //APostKit
 include ':APostKit'
 project(':APostKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APostKit")

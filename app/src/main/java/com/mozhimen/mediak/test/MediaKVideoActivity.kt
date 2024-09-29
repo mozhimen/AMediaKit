@@ -5,7 +5,7 @@ import androidx.lifecycle.lifecycleScope
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrAsset
 import com.mozhimen.kotlin.utilk.kotlin.UtilKStrPath
 import com.mozhimen.mediak.test.databinding.ActivityMediakVideoBinding
-import com.mozhimen.mvvmk.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.bindk.bases.activity.viewbinding.BaseActivityVB
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
