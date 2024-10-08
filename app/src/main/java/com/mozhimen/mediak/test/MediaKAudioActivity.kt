@@ -19,7 +19,7 @@ import com.mozhimen.mediak.audio.cons.CMediaKAudioCons
 import com.mozhimen.mediak.audio.mos.MAudioKInfo
 import com.mozhimen.mediak.audio.mos.MAudioKProgress
 import com.mozhimen.mediak.test.databinding.ActivityMediakAudioBinding
-import com.mozhimen.bindk.bases.activity.viewbinding.BaseActivityVB
+import com.mozhimen.bindk.bases.viewbinding.activity.BaseActivityVB
 import com.mozhimen.postk.livedata.PostKLiveData
 import com.mozhimen.xmlk.layoutk.slider.LayoutKSlider
 import com.mozhimen.xmlk.layoutk.slider.commons.ISliderScrollListener
