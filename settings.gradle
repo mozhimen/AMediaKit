@@ -20,9 +20,36 @@ dependencyResolutionManagement {
 
 rootProject.name = "AMediaKit"
 include ':app'
-include ':mediak_audio'
-include ':mediak_player'
-include ':mediak_video'
+include ':audio'
+include ':player'
+include ':video'
+//ALibKit_Google
+include ':ALibKit_Google'
+project(':ALibKit_Google').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Google")
+include ':ALibKit_Google:material'
+//ALibKit_Jetpack
+include ':ALibKit_Jetpack'
+project(':ALibKit_Jetpack').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetpack")
+include ':ALibKit_Jetpack:databinding'
+include ':ALibKit_Jetpack:core'
+include ':ALibKit_Jetpack:annotation'
+//ALibKit_Jetbrains
+include ':ALibKit_Jetbrains'
+project(':ALibKit_Jetbrains').projectDir = new File("D:\\WorkSpace\\GitHub\\ALibKit_Jetbrains")
+include ':ALibKit_Jetbrains:kotlin_stdlib'
+include ':ALibKit_Jetbrains:kotlinx_coroutines'
+//KUtilKit
+include ':KUtilKit'
+project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
+include ':KUtilKit:android'
+include ':KUtilKit:kotlin'
+//ASwiftKit
+include ':ASwiftKit'
+project(':ASwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ASwiftKit")
+include ':ASwiftKit:basick'
+include ':ASwiftKit:xmlk'
+include ':ASwiftKit:blurk'
+include ':ASwiftKit:bindk'
 //AXmlKit
 include ':AXmlKit'
 project(':AXmlKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AXmlKit")
@@ -30,43 +57,32 @@ include ':AXmlKit:textk'
 include ':AXmlKit:layoutk_slider'
 include ':AXmlKit:popwink'
 include ':AXmlKit:imagek_blur'
-//SwiftKit
-include ':SwiftKit'
-project(':SwiftKit').projectDir = new File("D:\\WorkSpace\\GitHub\\SwiftKit")
-include ':SwiftKit:basick'
-include ':SwiftKit:xmlk'
-include ':SwiftKit:blurk'
-include ':SwiftKit:bindk'
 //APostKit
 include ':APostKit'
 project(':APostKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APostKit")
-include ':APostKit:postk_livedata'
-//KUtilKit
-include ':KUtilKit'
-project(':KUtilKit').projectDir = new File("D:\\WorkSpace\\GitHub\\KUtilKit")
-include ':KUtilKit:utilk_android'
-include ':KUtilKit:utilk_kotlin'
+include ':APostKit:livedata'
+include ':APostKit:basic'
 //AAnimKit
 include ':AAnimKit'
 project(':AAnimKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AAnimKit")
-include ':AAnimKit:animk_builder'
+include ':AAnimKit:builder'
 //AImageKit
 include ':AImageKit'
 project(':AImageKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AImageKit")
-include ':AImageKit:imagek_glide_blur'
-include ':AImageKit:imagek_glide'
+include ':AImageKit:glide:blur'
+include ':AImageKit:glide'
 //APostKit
 include ':APostKit'
 project(':APostKit').projectDir = new File("D:\\WorkSpace\\GitHub\\APostKit")
-include ':APostKit:postk_livedata'
+include ':APostKit:livedata'
 //ATaskKit
 include ':ATaskKit'
 project(':ATaskKit').projectDir = new File("D:\\WorkSpace\\GitHub\\ATaskKit")
-include ':ATaskKit:taskk_executor'
+include ':ATaskKit:executor'
 //AStackKit
 include ':AStackKit'
 project(':AStackKit').projectDir = new File("D:\\WorkSpace\\GitHub\\AStackKit")
-include ':AStackKit:stackk_callback'
+include ':AStackKit:callback'
 include ':AStackKit:basic'
 
 

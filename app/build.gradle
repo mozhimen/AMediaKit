@@ -38,17 +38,17 @@ android {
 
 dependencies {
 
-    implementation project(':SwiftKit:bindk')
-    implementation project(':SwiftKit:xmlk')
+    implementation project(':ASwiftKit:bindk')
+    implementation project(':ASwiftKit:xmlk')
     implementation project(':AXmlKit:textk')
     implementation project(':AXmlKit:layoutk_slider')
     implementation project(':AXmlKit:popwink')
-    implementation project(':AAnimKit:animk_builder')
-    implementation project(':APostKit:postk_livedata')
+    implementation project(':AAnimKit:builder')
+    implementation project(':APostKit:livedata')
 
-    implementation project(':mediak_player')
-    implementation project(':mediak_audio')
-    implementation project(':mediak_video')
+    implementation project(':player')
+    implementation project(':audio')
+    implementation project(':video')
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.5'
